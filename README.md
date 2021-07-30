@@ -1,6 +1,6 @@
-# decorontario_mobile2
+# flutter_jdshop
 
-A new Flutter project.
+A new Flutter application.
 
 ## Getting Started
 

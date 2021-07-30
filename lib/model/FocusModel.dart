@@ -1,12 +1,10 @@
+// FocusModel.fromJson(json);
 class FocusModel {
   List<FocusItemModel> result;
-
   FocusModel({this.result});
-
   FocusModel.fromJson(Map<String, dynamic> json) {
     if (json['result'] != null) {
-      result = List.empty(growable: true);
-
+      result = new List<FocusItemModel>();
       json['result'].forEach((v) {
         result.add(new FocusItemModel.fromJson(v));
       });
@@ -30,7 +28,6 @@ class FocusItemModel {
   String url;
 
   FocusItemModel({this.sId, this.title, this.status, this.pic, this.url});
-
   FocusItemModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     title = json['title'];

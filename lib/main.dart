@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'pages/tabs/Tabs.dart';
 
-//引入路由组件
 import 'routers/router.dart';
 
-void main() {
-  runApp(MyApp());
-}
+// 引入provider
+import 'package:provider/provider.dart';
+import 'provider/Cart.dart';
+
+import 'provider/CheckOut.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   MyApp({Key key}) : super(key: key);
@@ -17,11 +19,21 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // home: Tabs(),
-      //初始路由
-      initialRoute: '/',
-      onGenerateRoute: onGenerateRoute,
+    return MultiProvider(
+      providers: [
+        // ChangeNotifierProvider(builder: (_) => Counter()),
+        ChangeNotifierProvider(builder: (_) => Cart()),
+        ChangeNotifierProvider(builder: (_) => CheckOut())             
+      ],
+      child: MaterialApp(
+        // home: Tabs(),
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        onGenerateRoute: onGenerateRoute,
+        theme: ThemeData(
+            // primaryColor: Colors.yellow
+            primaryColor: Colors.white),
+      ),
     );
   }
 }

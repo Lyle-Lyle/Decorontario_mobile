@@ -1,5 +1,9 @@
-import 'package:decorontario_mobile2/services/ScreenAdapter.dart';
 import 'package:flutter/material.dart';
+
+import '../../services/ScreenAdapter.dart';
+import '../../config/Config.dart';
+import 'package:dio/dio.dart';
+import '../../model/CateModel.dart';
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
@@ -7,92 +11,201 @@ class CategoryPage extends StatefulWidget {
   _CategoryPageState createState() => _CategoryPageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
-
+class _CategoryPageState extends State<CategoryPage>
+    with AutomaticKeepAliveClientMixin {
   int _selectIndex = 0;
+  //List _leftCateList = [];
+  List _rightCateList = [];
 
   @override
-  Widget build(BuildContext context) {
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
-    ScreenAdapter.init(context);
-    //计算宽高比
-    var leftWidth = ScreenAdapter.getScreenWidth()/4;
+  @override
+  void initState() {
+    super.initState();
+   // _getLeftCateData();
+    _getRightCateData();
+    //print("category");
+  }
 
-    var rightItemWidth = (ScreenAdapter.getScreenWidth() - leftWidth - 20-20) / 3;
+  //左侧分类
+  // _getLeftCateData() async {
+  //   var api = '${Config.domain2}api/pcate';
+  //   var result = await Dio().get(api);
+  //   var leftCateList = new CateModel.fromJson(result.data);
+  //   // print(leftCateList.result);
+  //   setState(() {
+  //     this._leftCateList = leftCateList.result;
+  //   });
+  //   _getRightCateData(leftCateList.result[0].sId);
+  // }
 
-    rightItemWidth = ScreenAdapter.width(rightItemWidth);
-    var rightItemHeight = rightItemWidth + ScreenAdapter.height(28);
+  //右侧分类
+  _getRightCateData() async {
+    var api = '${Config.domain2}api/items';
+    var result = await Dio().get(api);
+    var rightCateList = new CateModel.fromJson(result.data);
+    print(rightCateList.result);
+    setState(() {
+      this._rightCateList = rightCateList.result;
+    });
+  }
 
-    return Row(
-      children: <Widget>[
-        Container(
-          width: leftWidth,
-          height: double.infinity,
-          //color: Colors.red,
-          child: ListView.builder(
-            itemCount: 8,
-            itemBuilder: (context,index){
-              return Column(
-                children: <Widget>[
-                  //可点击组件
-                  InkWell(
-                    //点击事件
-                    onTap: (){
-                      setState(() {
-                        _selectIndex = index;
-                      });
-              },
-                    child: Container(
-                      child: Text("${index}",textAlign: TextAlign.center,),
-                      width: double.infinity,
-                      height: ScreenAdapter.height(84),
-                      color: _selectIndex == index ? Color.fromRGBO(240, 245, 245, 0.9) : Colors.white,
+  // Widget _leftCateWidget(leftWidth) {
+  //   if (this._leftCateList.length > 0) {
+  //     return Container(
+  //       width: leftWidth,
+  //       height: double.infinity,
+  //       // color: Colors.red,
+  //       child: ListView.builder(
+  //         itemCount: this._leftCateList.length,
+  //         itemBuilder: (context, index) {
+  //           return Column(
+  //             children: <Widget>[
+  //               InkWell(
+  //                 onTap: () {
+  //                   setState(() {
+  //                     _selectIndex = index;
+  //                     this._getRightCateData(this._leftCateList[index].sId);
+  //                   });
+  //                 },
+  //                 child: Container(
+  //                   width: double.infinity,
+  //                   height: ScreenAdapter.height(84),
+  //                   padding: EdgeInsets.only(top: ScreenAdapter.height(24)),
+  //                   child: Text("${this._leftCateList[index].title}",
+  //                       textAlign: TextAlign.center),
+  //                   color: _selectIndex == index
+  //                       ? Color.fromRGBO(240, 246, 246, 0.9)
+  //                       : Colors.white,
+  //                 ),
+  //               ),
+  //               Divider(height: 1),
+  //             ],
+  //           );
+  //         },
+  //       ),
+  //     );
+  //   } else {
+  //     return Container(width: leftWidth, height: double.infinity);
+  //   }
+  // }
+
+  Widget _rightCateWidget(rightItemWidth, rightItemHeight) {
+    if (this._rightCateList.length > 0) {
+      return Expanded(
+        flex: 1,
+        child: Container(
+            padding: EdgeInsets.all(10),
+            height: double.infinity,
+            color: Color.fromRGBO(240, 246, 246, 0.9),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: rightItemWidth / rightItemHeight,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10),
+              itemCount: this._rightCateList.length,
+              itemBuilder: (context, index) {
+                //处理图片
+                String pic = this._rightCateList[index].pic;
+                //pic = Config.domain2 + pic.replaceAll('\\', '/');
+
+                //监听分类页面的点击事件
+                return InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/productList',
+                        //传递当前点击的分类的ID-cid
+                        arguments: {"cid": this._rightCateList[index].sId});
+                  },
+                  child: Container(
+                    // padding: EdgeInsets.all(10),
+                    child: Column(
+                      children: <Widget>[
+                        AspectRatio(
+                          aspectRatio: 1 / 1,
+                          child: Image.network("${pic}", fit: BoxFit.cover),
+                        ),
+                        Container(
+                          height: ScreenAdapter.height(28),
+                          child: Text("${this._rightCateList[index].title}"),
+                        )
+                      ],
                     ),
                   ),
-                  Divider(height: 1,)
-                ],
-              );
-            },
-          ),
-        ),
-        Expanded(
+                );
+              },
+            )),
+      );
+    } else {
+      return Expanded(
           flex: 1,
           child: Container(
             padding: EdgeInsets.all(10),
             height: double.infinity,
-            color: Color.fromRGBO(240,244,244,0.8),
-            child: GridView.builder(
-             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-               crossAxisCount: 3,
-               //适配不同终端
-               childAspectRatio: rightItemWidth/rightItemHeight,
-               crossAxisSpacing: 10,
-               mainAxisSpacing: 10
-             ),
-              itemCount: 18,
-              itemBuilder: (context,index){
-               return Container(
+            color: Color.fromRGBO(240, 246, 246, 0.9),
+            child: Text("Loading..."),
+          ));
+    }
+  }
 
-                 child: Column(
-                   children: <Widget>[
-                     AspectRatio(
-                       aspectRatio: 1/1,
-                       child: Image.network("https://cdn.nlark.com/yuque/0/2021/jpeg/615808/1627398123537-5b490c9a-8b20-40fb-b1aa-04b97570a147.jpeg",
-                       fit: BoxFit.cover,
-                       ),
-                     ),
-                     Container(
-                       height: ScreenAdapter.height(28),
-                       child: Text('outfit'),
-                     ),
-                   ],
-                 ),
-               );
-              },
-            ),
-          ),
-        )
-      ],
+  @override
+  Widget build(BuildContext context) {
+    //注意用ScreenAdapter必须得在build方法里面初始化
+    ScreenAdapter.init(context);
+
+    //左侧宽度
+    var leftWidth = ScreenAdapter.getScreenWidth() / 4;
+    //右侧每一项宽度=（总宽度-左侧宽度-GridView外侧元素左右的Padding值-GridView中间的间距）/3
+    var rightItemWidth =
+        (ScreenAdapter.getScreenWidth() - leftWidth - 20 - 20) / 3;
+    //获取计算后的宽度
+    rightItemWidth = ScreenAdapter.width(rightItemWidth);
+    //获取计算后的高度
+    var rightItemHeight = rightItemWidth + ScreenAdapter.height(28);
+
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     leading: IconButton(
+    //       icon: Icon(Icons.center_focus_weak, size: 28, color: Colors.black87),
+    //       onPressed: null,
+    //     ),
+    //     title: InkWell(
+    //       child: Container(
+    //         height: ScreenAdapter.height(68),
+    //         decoration: BoxDecoration(
+    //             color: Color.fromRGBO(233, 233, 233, 0.8),
+    //             borderRadius: BorderRadius.circular(30)),
+    //         padding: EdgeInsets.only(left: 10),
+    //         child: Row(
+    //           crossAxisAlignment: CrossAxisAlignment.center,
+    //           children: <Widget>[
+    //             Icon(Icons.search),
+    //             Text("笔记本", style: TextStyle(fontSize: ScreenAdapter.size(28)))
+    //           ],
+    //         ),
+    //       ),
+    //       onTap: () {
+    //         Navigator.pushNamed(context, '/search');
+    //       },
+    //     ),
+    //     actions: <Widget>[
+    //       IconButton(
+    //         icon: Icon(Icons.message, size: 28, color: Colors.black87),
+    //         onPressed: null,
+    //       )
+    //     ],
+    //   ),
+    //   body: Row(
+    //     children: <Widget>[
+    //       //_leftCateWidget(leftWidth),
+    //       _rightCateWidget(rightItemWidth, rightItemHeight)
+    //     ],
+    //   ),
+    // );
+    return Scaffold(
+      body: Text("TODO page"),
     );
   }
 }

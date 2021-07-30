@@ -5,7 +5,7 @@ class ProductModel {
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     if (json['result'] != null) {
-      result = List.empty(growable: true);
+      result = new List<ProductItemModel>();
       json['result'].forEach((v) {
         result.add(new ProductItemModel.fromJson(v));
       });
@@ -25,21 +25,20 @@ class ProductItemModel {
   String sId;
   String title;
   String cid;
-  Object price;
+  Object price;   //所有的类型都继承 Object
   String oldPrice;
   String pic;
   String sPic;
 
   ProductItemModel(
       {this.sId,
-        this.title,
-        this.cid,
-        this.price,
-        this.oldPrice,
-        this.pic,
-        this.sPic});
+      this.title,
+      this.cid,
+      this.price,
+      this.oldPrice,
+      this.pic,
+      this.sPic});
 
-  //命名构造函数
   ProductItemModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     title = json['title'];
