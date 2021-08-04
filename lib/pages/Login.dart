@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: (){
                         Navigator.pushNamed(context, '/registerFirst');
                       },
-                      child: Text('Register here'),
+                      child: Text('SignUp'),
                     ),
                   )
                 ],

@@ -60,11 +60,11 @@ class _PayPageState extends State<PayPage> {
                 },
               )),
           JdButton(
-            text: "支付",
+            text: "pay",
             color: Colors.red,
             height: 74,
             cb: () {
-              print('支付1111');
+              print('Pay\$111');
             },
           )
         ],

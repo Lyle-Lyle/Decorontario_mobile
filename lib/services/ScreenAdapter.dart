@@ -1,5 +1,8 @@
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
+//屏幕适配的解决方案
 class ScreenAdapter{
 
   static init(context){

@@ -32,15 +32,15 @@ class _AddressAddPageState extends State<AddressAddPage> {
   //监听页面销毁的事件
   dispose(){
     super.dispose();
-    eventBus.fire(new AddressEvent('增加成功...'));
-    eventBus.fire(new CheckOutEvent('改收货地址成功...'));
+    eventBus.fire(new AddressEvent('Success...'));
+    eventBus.fire(new CheckOutEvent('Changed the address...'));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("增加收货地址"),
+          title: Text("Add Address"),
         ),
         body: Container(
           padding: EdgeInsets.all(10),
@@ -48,14 +48,14 @@ class _AddressAddPageState extends State<AddressAddPage> {
             children: <Widget>[
               SizedBox(height: 20),
               JdText(
-                text: "收货人姓名",
+                text: "Name",
                 onChanged: (value){
                   this.name=value;
                 },
               ),
               SizedBox(height: 10),
               JdText(
-                text: "收货人电话",
+                text: "Phone Number",
                 onChanged: (value){
                   this.phone=value;
                 },
@@ -78,9 +78,9 @@ class _AddressAddPageState extends State<AddressAddPage> {
                     Result result = await CityPickers.showCityPicker(
                         context: context,
                         cancelWidget:
-                            Text("取消", style: TextStyle(color: Colors.blue)),
+                            Text("Cancel", style: TextStyle(color: Colors.blue)),
                         confirmWidget:
-                            Text("确定", style: TextStyle(color: Colors.blue))
+                            Text("OK", style: TextStyle(color: Colors.blue))
                     );
 
                     print(result);
@@ -92,7 +92,7 @@ class _AddressAddPageState extends State<AddressAddPage> {
               ),
               SizedBox(height: 10),
               JdText(
-                text: "详细地址",
+                text: "Detail",
                 maxLines: 4,
                 height: 200,
                 onChanged: (value){
@@ -101,7 +101,7 @@ class _AddressAddPageState extends State<AddressAddPage> {
               ),
               SizedBox(height: 10),
               SizedBox(height: 40),
-              JdButton(text: "增加", color: Colors.red,cb: () async{
+              JdButton(text: "Add", color: Colors.red,cb: () async{
 
                   List userinfo=await UserServices.getUserInfo();
 

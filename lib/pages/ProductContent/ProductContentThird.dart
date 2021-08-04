@@ -17,7 +17,7 @@ class _ProductContentThirdState extends State<ProductContentThird>  with Automat
          itemCount: 30,
          itemBuilder: (context,index){
            return ListTile(
-             title: Text("第${index}条"),
+             title: Text("${index}"),
            );
 
          },

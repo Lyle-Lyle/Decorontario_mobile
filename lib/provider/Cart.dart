@@ -96,15 +96,6 @@ class Cart with ChangeNotifier {
   }
   //删除数据
   removeItem() {
-              //  1        2
-    // ['1111','2222','333333333','4444444444']
-    // 错误的写法 
-    // for (var i = 0; i < this._cartList.length; i++) {
-    //   if (this._cartList[i]["checked"] == true) {
-    //      this._cartList.removeAt(i);
-    //   }
-    // }
-
     List tempList=[];
     for (var i = 0; i < this._cartList.length; i++) {
       if (this._cartList[i]["checked"] == false) {

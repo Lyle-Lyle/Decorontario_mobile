@@ -33,6 +33,7 @@ dependencies:
   fluttertoast: ^3.1.0
   city_pickers: ^0.1.22
   crypto: ^2.1.1
+  http: ^0.11.3
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,15 @@ flutter:
     - images/3.0x/user.png
     - images/3.0x/user_bg.jpg
     - images/logo.jpg
+    - images/pictures/chair.png
+    - images/pictures/chair1.png
+    - images/pictures/chair2.png
+    - images/pictures/chair3.png
+    - images/pictures/chair4.png
+    - images/pictures/chair5.png
+    - images/pictures/chair6.png
+    - images/pictures/chair7.png
+    - images/pictures/chair8.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

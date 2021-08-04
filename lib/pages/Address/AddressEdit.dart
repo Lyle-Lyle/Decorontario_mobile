@@ -43,14 +43,14 @@ class _AddressEditPageState extends State<AddressEditPage> {
    //监听页面销毁的事件
   dispose(){
     super.dispose();
-    eventBus.fire(new AddressEvent('增加成功...'));   
+    eventBus.fire(new AddressEvent('Successfully Added...'));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("修改收货地址"),
+        title: Text("Change Address"),
       ),
       body: Container(
           padding: EdgeInsets.all(10),
@@ -59,7 +59,7 @@ class _AddressEditPageState extends State<AddressEditPage> {
               SizedBox(height: 20),
               JdText(
                 controller: nameController,
-                text: "收货人姓名",
+                text: "Name",
                 onChanged: (value){
                   nameController.text=value;
                 },
@@ -67,7 +67,7 @@ class _AddressEditPageState extends State<AddressEditPage> {
               SizedBox(height: 10),
               JdText(
                 controller: phoneController,
-                text: "收货人电话",
+                text: "Phone Number",
                 onChanged: (value){
                   phoneController.text=value;
                 },
@@ -91,9 +91,9 @@ class _AddressEditPageState extends State<AddressEditPage> {
                         context: context,
                         locationCode: "130102",
                         cancelWidget:
-                            Text("取消", style: TextStyle(color: Colors.blue)),
+                            Text("Cancel", style: TextStyle(color: Colors.blue)),
                         confirmWidget:
-                            Text("确定", style: TextStyle(color: Colors.blue))
+                            Text("OK", style: TextStyle(color: Colors.blue))
                     );
 
                     // print(result);
@@ -106,7 +106,7 @@ class _AddressEditPageState extends State<AddressEditPage> {
               SizedBox(height: 10),
               JdText(
                 controller: addressController,
-                text: "详细地址",
+                text: "Detail",
                 maxLines: 4,
                 height: 200,
                 onChanged: (value){
@@ -115,7 +115,7 @@ class _AddressEditPageState extends State<AddressEditPage> {
               ),
               SizedBox(height: 10),
               SizedBox(height: 40),
-              JdButton(text: "修改", color: Colors.red,cb: () async{
+              JdButton(text: "Modify", color: Colors.red,cb: () async{
 
                   List userinfo=await UserServices.getUserInfo();
 

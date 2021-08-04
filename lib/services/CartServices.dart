@@ -22,29 +22,6 @@ class CartServices {
             没有数据：
                 1、把当前商品数据以及属性数据放在数组中然后写入本地存储
 
-
-
-                List list=[
-                  {"_id": "1", 
-                    "title": "磨砂牛皮男休闲鞋-有属性", 
-                    "price": 688, 
-                    "selectedAttr": "牛皮 ,系带,黄色", 
-                    "count": 4, 
-                    "pic":"public\upload\RinsvExKu7Ed-ocs_7W1DxYO.png",
-                    "checked": true
-                  },  
-                    {"_id": "2", 
-                    "title": "磨xxxxxxxxxxxxx", 
-                    "price": 688, 
-                    "selectedAttr": "牛皮 ,系带,黄色", 
-                    "count": 2, 
-                    "pic":"public\upload\RinsvExKu7Ed-ocs_7W1DxYO.png",
-                    "checked": true
-                  }              
-                  
-                ];
-
-    
       */
 
     //把数据放在本地
@@ -102,6 +79,7 @@ class CartServices {
   //获取购物车选中的数据
   static getCheckOutData() async {
     List cartListData = [];
+    //获取购物车中选中的项
     List tempCheckOutData = [];
     try {
       cartListData = json.decode(await Storage.getString('cartList'));
@@ -109,6 +87,7 @@ class CartServices {
       cartListData = [];
     }
     for (var i = 0; i < cartListData.length; i++) {
+      //如果选中，放到临时数组中
       if (cartListData[i]["checked"] == true) {
         tempCheckOutData.add(cartListData[i]);
       }

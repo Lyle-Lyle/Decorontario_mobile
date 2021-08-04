@@ -32,7 +32,7 @@ class _AddressListPageState extends State<AddressListPage> {
     //监听页面销毁的事件
   dispose(){
     super.dispose();
-    eventBus.fire(new CheckOutEvent('改收货地址成功...'));
+    eventBus.fire(new CheckOutEvent('Changed the address...'));
   }
 
   //获取收货地址列表
@@ -106,17 +106,17 @@ class _AddressListPageState extends State<AddressListPage> {
         context:context,
         builder: (context){
           return AlertDialog(
-            title: Text("提示信息!"),
-            content:Text("您确定要删除吗?") ,
+            title: Text("Warning!"),
+            content:Text("Are you sure you want to delete it?") ,
             actions: <Widget>[
               FlatButton(
-                child: Text("取消"),
+                child: Text("Cancel"),
                 onPressed: (){                  
                   Navigator.pop(context);
                 },
               ),
               FlatButton(
-                child: Text("确定"),
+                child: Text("OK"),
                 onPressed: () async{            
                   //执行删除操作
                   this._delAddress(id);
@@ -134,7 +134,7 @@ class _AddressListPageState extends State<AddressListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("收货地址列表"),
+          title: Text("Address List"),
         ),
         body: Container(
           child: Stack(
@@ -239,7 +239,7 @@ class _AddressListPageState extends State<AddressListPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.add, color: Colors.white),
-                        Text("增加收货地址", style: TextStyle(color: Colors.white))
+                        Text("Add Address", style: TextStyle(color: Colors.white))
                       ],
                     ),
                     onTap: () {

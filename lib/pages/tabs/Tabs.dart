@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jdshop/pages/tabs/search_index.dart';
 import '../../services/ScreenAdapter.dart';
 
 import 'Home.dart';
@@ -22,7 +23,7 @@ class _TabsState extends State<Tabs> {
     this._pageController = new PageController(initialPage: this._currentIndex);
   }
 
-  List<Widget> _pageList = [HomePage(), CategoryPage(), CartPage(), UserPage()];
+  List<Widget> _pageList = [HomePage(), SearchIndex(), CartPage(), UserPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +57,10 @@ class _TabsState extends State<Tabs> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home Page")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.category), title: Text("Category")),
+              icon: Icon(Icons.category), title: Text("Search")),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart), title: Text("Shopping Cart")),
-          BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("Profile"))
+          BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("User"))
         ],
       ),
     );

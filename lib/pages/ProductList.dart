@@ -53,7 +53,7 @@ class _ProductListPageState extends State<ProductListPage> {
     {"id": 4, "title": "筛选"}
   ];
   //二级导航选中判断
-  int _selectHeaderId = 1;  
+  int _selectHeaderId = 1;
 
 
   //配置search搜索框的值
@@ -68,18 +68,18 @@ class _ProductListPageState extends State<ProductListPage> {
 
   var _keywords;
 
-  
+
 
   @override
   void initState() {
     super.initState();
 
     this._cid=widget.arguments["cid"];
-    this._keywords=widget.arguments["keywords"];    
-    //给search框框赋值 
+    this._keywords=widget.arguments["keywords"];
+    //给search框框赋值
     this._initKeywordsController.text=this._keywords;
-       
-    
+
+
     _getProductListData();
     //监听滚动条滚动事件
     _scrollController.addListener(() {
@@ -104,7 +104,7 @@ class _ProductListPageState extends State<ProductListPage> {
      var api;
     if(this._keywords==null){
       api ='${Config.domain1}api/plist?cid=${this._cid}&page=${this._page}&sort=${this._sort}&pageSize=${this._pageSize}';
-    }else{     
+    }else{
       api ='${Config.domain1}api/plist?search=${this._keywords}&page=${this._page}&sort=${this._sort}&pageSize=${this._pageSize}';
     }
     // print(api);
@@ -115,27 +115,27 @@ class _ProductListPageState extends State<ProductListPage> {
     //判断是否有搜索数据
     if(productList.result.length==0 && this._page==1){
       setState(() {
-        this._hasData=false; 
+        this._hasData=false;
       });
     }else{
-        this._hasData=true; 
+        this._hasData=true;
     }
     //判断最后一页有没有数据
     if (productList.result.length < this._pageSize) {
-      setState(() {       
+      setState(() {
         this._productList.addAll(productList.result);
         this._hasMore = false;
         this.flag = true;
       });
     } else {
-      setState(() {        
+      setState(() {
         this._productList.addAll(productList.result);
         this._page++;
         this.flag = true;
       });
     }
 
- 
+
   }
 
   //显示加载中的圈圈
@@ -275,7 +275,7 @@ class _ProductListPageState extends State<ProductListPage> {
       return Icon(Icons.arrow_drop_up);
     }
     return Text("");
-  } 
+  }
   //筛选导航
   Widget _subHeaderWidget() {
     return Positioned(
@@ -307,7 +307,7 @@ class _ProductListPageState extends State<ProductListPage> {
                         style: TextStyle(
                             color: (this._selectHeaderId == value["id"])
                                 ? Colors.red
-                                : Colors.black54),                        
+                                : Colors.black54),
                       ),
                       _showIcon(value["id"])
                     ],
@@ -377,7 +377,7 @@ class _ProductListPageState extends State<ProductListPage> {
           ],
         ):Center(
           child: Text("没有您要浏览的数据")
-        )        
+        )
       );
   }
 }

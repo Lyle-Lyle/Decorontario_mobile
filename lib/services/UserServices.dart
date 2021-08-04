@@ -2,6 +2,7 @@
 import '../services/Storage.dart';
 import 'dart:convert';
 
+//可以通过静态方法获取用户信息和登录状态
 class UserServices{
   static getUserInfo() async{
      List userinfo;

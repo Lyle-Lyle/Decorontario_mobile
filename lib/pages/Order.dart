@@ -28,6 +28,7 @@ class _OrderPageState extends State<OrderPage> {
   void _getListData() async {
     List userinfo = await UserServices.getUserInfo();
 
+    //获取用户信息
     var tempJson = {"uid": userinfo[0]['_id'], "salt": userinfo[0]["salt"]};
 
     var sign = SignServices.getSign(tempJson);

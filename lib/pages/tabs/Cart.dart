@@ -40,7 +40,7 @@ class _CartPageState extends State<CartPage> {
         Navigator.pushNamed(context, '/checkOut');
       } else {
         Fluttertoast.showToast(
-          msg: 'Please register',
+          msg: 'SignUp',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
         );
@@ -63,103 +63,103 @@ class _CartPageState extends State<CartPage> {
 
     checkOutProvider = Provider.of<CheckOut>(context);
 
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text("Shopping Cart"),
-    //     actions: <Widget>[
-    //       IconButton(
-    //         icon: Icon(Icons.launch),
-    //         onPressed: () {
-    //           setState(() {
-    //             this._isEdit = !this._isEdit;
-    //           });
-    //         },
-    //       )
-    //     ],
-    //   ),
-    //   body: cartProvider.cartList.length > 0
-    //       ? Stack(
-    //           children: <Widget>[
-    //             ListView(
-    //               children: <Widget>[
-    //                 Column(
-    //                     children: cartProvider.cartList.map((value) {
-    //                   return CartItem(value);
-    //                 }).toList()),
-    //                 SizedBox(height: ScreenAdapter.height(100))
-    //               ],
-    //             ),
-    //             Positioned(
-    //               bottom: 0,
-    //               width: ScreenAdapter.width(750),
-    //               height: ScreenAdapter.height(78),
-    //               child: Container(
-    //                 decoration: BoxDecoration(
-    //                   border: Border(
-    //                       top: BorderSide(width: 1, color: Colors.black12)),
-    //                   color: Colors.white,
-    //                 ),
-    //                 width: ScreenAdapter.width(750),
-    //                 height: ScreenAdapter.height(78),
-    //                 child: Stack(
-    //                   children: <Widget>[
-    //                     Align(
-    //                       alignment: Alignment.centerLeft,
-    //                       child: Row(
-    //                         children: <Widget>[
-    //                           Container(
-    //                             width: ScreenAdapter.width(60),
-    //                             child: Checkbox(
-    //                               value: cartProvider.isCheckedAll,
-    //                               activeColor: Colors.pink,
-    //                               onChanged: (val) {
-    //                                 //实现全选或者反选
-    //                                 cartProvider.checkAll(val);
-    //                               },
-    //                             ),
-    //                           ),
-    //                           Text("Select All"),
-    //                           SizedBox(width: 20),
-    //                           this._isEdit == false ? Text("Total:") : Text(""),
-    //                           this._isEdit == false
-    //                               ? Text("${cartProvider.allPrice}",
-    //                                   style: TextStyle(
-    //                                       fontSize: 20, color: Colors.red))
-    //                               : Text(""),
-    //                         ],
-    //                       ),
-    //                     ),
-    //                     this._isEdit == false
-    //                         ? Align(
-    //                             alignment: Alignment.centerRight,
-    //                             child: RaisedButton(
-    //                               child: Text("Pay",
-    //                                   style: TextStyle(color: Colors.white)),
-    //                               color: Colors.red,
-    //                               onPressed: doCheckOut,
-    //                             ),
-    //                           )
-    //                         : Align(
-    //                             alignment: Alignment.centerRight,
-    //                             child: RaisedButton(
-    //                               child: Text("Delete",
-    //                                   style: TextStyle(color: Colors.white)),
-    //                               color: Colors.red,
-    //                               onPressed: () {
-    //                                 cartProvider.removeItem();
-    //                               },
-    //                             ),
-    //                           )
-    //                   ],
-    //                 ),
-    //               ),
-    //             )
-    //           ],
-    //         )
-    //       : Center(
-    //           child: Text("Nothing here..."),
-    //         ),
-    // );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Shopping Cart"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.launch),
+            onPressed: () {
+              setState(() {
+                this._isEdit = !this._isEdit;
+              });
+            },
+          )
+        ],
+      ),
+      body: cartProvider.cartList.length > 0
+          ? Stack(
+              children: <Widget>[
+                ListView(
+                  children: <Widget>[
+                    Column(
+                        children: cartProvider.cartList.map((value) {
+                      return CartItem(value);
+                    }).toList()),
+                    SizedBox(height: ScreenAdapter.height(100))
+                  ],
+                ),
+                Positioned(
+                  bottom: 0,
+                  width: ScreenAdapter.width(750),
+                  height: ScreenAdapter.height(78),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                          top: BorderSide(width: 1, color: Colors.black12)),
+                      color: Colors.white,
+                    ),
+                    width: ScreenAdapter.width(750),
+                    height: ScreenAdapter.height(78),
+                    child: Stack(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: ScreenAdapter.width(60),
+                                child: Checkbox(
+                                  value: cartProvider.isCheckedAll,
+                                  activeColor: Colors.pink,
+                                  onChanged: (val) {
+                                    //实现全选或者反选
+                                    cartProvider.checkAll(val);
+                                  },
+                                ),
+                              ),
+                              Text("Select All"),
+                              SizedBox(width: 20),
+                              this._isEdit == false ? Text("Total:") : Text(""),
+                              this._isEdit == false
+                                  ? Text("${cartProvider.allPrice}",
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.red))
+                                  : Text(""),
+                            ],
+                          ),
+                        ),
+                        this._isEdit == false
+                            ? Align(
+                                alignment: Alignment.centerRight,
+                                child: RaisedButton(
+                                  child: Text("Pay",
+                                      style: TextStyle(color: Colors.white)),
+                                  color: Colors.red,
+                                  onPressed: doCheckOut,
+                                ),
+                              )
+                            : Align(
+                                alignment: Alignment.centerRight,
+                                child: RaisedButton(
+                                  child: Text("Delete",
+                                      style: TextStyle(color: Colors.white)),
+                                  color: Colors.red,
+                                  onPressed: () {
+                                    cartProvider.removeItem();
+                                  },
+                                ),
+                              )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            )
+          : Center(
+              child: Text("Nothing here..."),
+            ),
+    );
     return Scaffold(
       body: Text("TODO"),
     );

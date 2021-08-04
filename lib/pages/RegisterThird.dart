@@ -36,13 +36,13 @@ class _RegisterThirdPageState extends State<RegisterThirdPage> {
   doRegister() async {
     if (password.length < 6) {
       Fluttertoast.showToast(
-        msg: '密码长度不能小于6位',
+        msg: 'Password length cannot be less than 6 digits',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
       );
     } else if (rpassword != password) {
       Fluttertoast.showToast(
-        msg: '密码和确认密码不一致',
+        msg: 'passwords are inconsistent',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
       );
@@ -75,7 +75,7 @@ class _RegisterThirdPageState extends State<RegisterThirdPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("用户注册-第三步"),
+        title: Text("SignUp"),
       ),
       body: Container(
         padding: EdgeInsets.all(ScreenAdapter.width(20)),
@@ -83,7 +83,7 @@ class _RegisterThirdPageState extends State<RegisterThirdPage> {
           children: <Widget>[
             SizedBox(height: 50),
             JdText(
-              text: "请输入密码",
+              text: "Type password here",
               password: true,
               onChanged: (value) {
                 this.password=value;
@@ -91,7 +91,7 @@ class _RegisterThirdPageState extends State<RegisterThirdPage> {
             ),
             SizedBox(height: 10),
             JdText(
-              text: "请输入确认密码",
+              text: "Confirm",
               password: true,
               onChanged: (value) {
                 this.rpassword=value;
@@ -99,7 +99,7 @@ class _RegisterThirdPageState extends State<RegisterThirdPage> {
             ),
             SizedBox(height: 20),
             JdButton(
-              text: "注册",
+              text: "SignUp",
               color: Colors.red,
               height: 74,
               cb: doRegister,

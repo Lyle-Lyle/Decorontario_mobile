@@ -21,6 +21,9 @@ class CheckOutPage extends StatefulWidget {
 }
 
 class _CheckOutPageState extends State<CheckOutPage> {
+  //计算商品总价
+  //List _price = checkOutListData();
+
   List _addressList = [];
   @override
   void initState() {
@@ -52,6 +55,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     });
   }
 
+  //需要支付的商品
   Widget _checkOutItem(item) {
     return Row(
       children: <Widget>[
@@ -92,7 +96,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
   @override
   Widget build(BuildContext context) {
     var checkOutProvider = Provider.of<CheckOut>(context);
-
+    var allPrice = CheckOutServices.getAllPrice(
+        checkOutProvider.checkOutListData);
     var cartProvider = Provider.of<Cart>(context);
 
     return Scaffold(
@@ -143,6 +148,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                 color: Colors.white,
                 padding: EdgeInsets.all(ScreenAdapter.width(20)),
                 child: Column(
+                  //获取购物车中的数据
                     children: checkOutProvider.checkOutListData.map((value) {
                   return Column(
                     children: <Widget>[_checkOutItem(value), Divider()],
@@ -150,20 +156,20 @@ class _CheckOutPageState extends State<CheckOutPage> {
                 }).toList()),
               ),
               SizedBox(height: 20),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(ScreenAdapter.width(20)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text("Total:\$100"),
-                    Divider(),
-                    Text("discount:\$5"),
-                    Divider(),
-                    Text("Delivery:\$0"),
-                  ],
-                ),
-              )
+              // Container(
+              //   color: Colors.white,
+              //   padding: EdgeInsets.all(ScreenAdapter.width(20)),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: <Widget>[
+              //       Text("Total:\$100"),
+              //       Divider(),
+              //       Text("discount:\$5"),
+              //       Divider(),
+              //       Text("Delivery:\$0"),
+              //     ],
+              //   ),
+              // )
             ],
           ),
           Positioned(
@@ -182,7 +188,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                 children: <Widget>[
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("total:\$140", style: TextStyle(color: Colors.red)),
+                    child: Text("Total: \$$allPrice", style: TextStyle(color: Colors.red)),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
