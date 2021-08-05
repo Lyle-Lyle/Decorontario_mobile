@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_jdshop/pages/tabs/search_index.dart';
+import 'package:new_version/pages/tabs/search_index.dart';
 import '../../services/ScreenAdapter.dart';
 
 import 'Home.dart';

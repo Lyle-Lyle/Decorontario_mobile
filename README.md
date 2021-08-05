@@ -1,6 +1,6 @@
-# flutter_jdshop
+# new_version
 
-A new Flutter application.
+A new Flutter project.
 
 ## Getting Started
 

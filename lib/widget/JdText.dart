@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_jdshop/services/ScreenAdapter.dart';
+import 'package:new_version/services/ScreenAdapter.dart';
 
 class JdText extends StatelessWidget {
 

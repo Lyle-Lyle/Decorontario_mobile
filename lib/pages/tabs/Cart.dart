@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_jdshop/services/CartServices.dart';
+import 'package:new_version/services/CartServices.dart';
 import '../../services/ScreenAdapter.dart';
 import '../../services/UserServices.dart';
 import 'package:provider/provider.dart';

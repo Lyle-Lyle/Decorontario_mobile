@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_jdshop/services/ScreenAdapter.dart';
+import 'package:new_version/services/ScreenAdapter.dart';
 
 import '../../widget/JdText.dart';
 

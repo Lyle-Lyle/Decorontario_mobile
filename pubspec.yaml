@@ -1,4 +1,4 @@
-name: flutter_jdshop
+name: new_version
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -22,18 +22,18 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.0
   flutter_swiper: ^1.1.6
   flutter_screenutil: ^0.5.3
-  dio: ^2.1.7
+  dio: ^3.0.9
   shared_preferences: ^0.5.3+1
-  flutter_inappbrowser: ^1.2.1
   provider: ^3.0.0+1
   event_bus: ^1.1.0
   fluttertoast: ^3.1.0
   city_pickers: ^0.1.22
   crypto: ^2.1.1
   http: ^0.11.3
+  model_viewer: ^0.8.1
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +72,14 @@ flutter:
     - images/pictures/chair6.png
     - images/pictures/chair7.png
     - images/pictures/chair8.png
+    - images/models/cactus.glb
+    - images/models/chair.glb
+    - images/models/frame.glb
+    - images/models/mixer.glb
+    - images/models/plant.glb
+    - images/models/sheen-chair.glb
+    - images/models/table.glb
+    - images/models/table-football.glb
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,7 +1,7 @@
 //https://material.io/tools/icons/?icon=favorite&style=baseline
 
 import 'package:flutter/material.dart';
-import 'package:flutter_jdshop/widget/JdButton.dart';
+import 'package:new_version/widget/JdButton.dart';
 import '../../services/ScreenAdapter.dart';
 
 import '../../services/UserServices.dart';
